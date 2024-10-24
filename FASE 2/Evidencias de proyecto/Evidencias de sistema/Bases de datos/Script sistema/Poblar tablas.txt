@@ -1,0 +1,58 @@
+CREATE TABLE country (
+    id SERIAL PRIMARY KEY,
+    country_name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE store (
+    store_id SERIAL PRIMARY KEY,
+    store_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE customer (
+    id VARCHAR(20) PRIMARY KEY,
+    gender VARCHAR(20) NOT NULL,
+    age INT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(30),
+    email VARCHAR(50),
+    nationality VARCHAR(30)
+);
+
+CREATE TABLE invoice (
+    invoice_no VARCHAR(25) PRIMARY KEY,
+    category VARCHAR(25) NOT NULL,
+    quantity INT,
+    product_name VARCHAR(100),
+    price FLOAT,
+    payment_method VARCHAR(20),
+    invoice_date DATE,
+    store_id INT,
+    customer_id VARCHAR(20) NOT NULL,
+    FOREIGN KEY (store_id) REFERENCES store(store_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE employee (
+    employee_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    education VARCHAR(50),
+    age FLOAT,
+    email VARCHAR(50),
+    gender VARCHAR(20),
+    store_id INT NOT NULL,
+    FOREIGN KEY (store_id) REFERENCES store(store_id)
+);
+
+CREATE TABLE hr_report (
+    employee_id INT PRIMARY KEY,
+    department VARCHAR(50) NOT NULL,
+    recruitment_channel VARCHAR(15),
+    no_of_trainings INT,
+    previous_year_rating INT,
+    length_of_service INT,
+    kpis_met INT,
+    awards_won INT,
+    avg_training_score INT,
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE
+);

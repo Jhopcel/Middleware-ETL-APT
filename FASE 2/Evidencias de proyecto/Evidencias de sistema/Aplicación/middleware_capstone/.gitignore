@@ -1,0 +1,9 @@
+.env
+logs/*
+.python-version
+!logs/scheduler
+logs/scheduler/*
+__pycache__
+webserver_config.py
+output.csv
+workflows/gx/uncommitted/
