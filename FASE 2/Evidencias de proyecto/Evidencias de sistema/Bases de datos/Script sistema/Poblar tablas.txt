@@ -1,3 +1,5 @@
+--PostgreSQL Sintaxis
+
 CREATE TABLE country (
     id SERIAL PRIMARY KEY,
     country_name VARCHAR(30) NOT NULL
